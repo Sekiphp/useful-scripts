@@ -2,14 +2,15 @@
 clear
 
 COLOR_RED="\033[0;31m"
-COLOR_YELLOW="\033[0;33m"
 COLOR_GREEN="\033[0;32m"
-COLOR_OCHRE="\033[38;5;95m"
 COLOR_BLUE="\033[0;34m"
 COLOR_WHITE="\033[0;37m"
+#COLOR_YELLOW="\033[0;33m"
+#COLOR_OCHRE="\033[38;5;95m"
 
 show_help() {
-    echo -e '\n\t' "+----------------------- HELP -----------------------+"
+    #echo -e '\n'
+    echo -e '\t' "+----------------------- HELP -----------------------+"
     echo -e '\t' "| (a)dd - add file to index                          |"
     echo -e '\t' "| (i)gnore - skip file                               |"
     echo -e '\t' "| checkout - checkout file (discard changes)         |"
@@ -33,28 +34,30 @@ do
 
     echo =====================================================================================================================================================
 
-    #tput smso
+    tput smso
     echo "Checking file: $FILE (status $STATUS)"
-    #tput rmso
+    tput rmso
 
     if [[ "$STATUS" = "M" ]];
     then
-        git diff "$FILE"
+        gdiff=$(git diff --color "$FILE")
 
-        #if [[ $(git diff "$FILE") = "" ]];
-        #then
-        #    echo "caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        #    diff=$(git diff --cached "$FILE")
-        #fi
+        if [[ "$gdiff" = "" ]];
+        then
+            gdiff=$(git diff --color --cached "$FILE")
+        fi
 
+        echo "$gdiff"
     elif [[ "$STATUS" = "D" ]];
     then
-        #echo -e $COLOR_RED
+        echo -e "$COLOR_RED"
         echo "File $FILE has been deleted"
-        #echo -e $COLOR_WHITE
+        echo -e "$COLOR_WHITE"
     elif [[ "$STATUS" = "??" ]];
     then
+        echo -e "$COLOR_BLUE"
         cat "$FILE"
+        echo -e "$COLOR_WHITE"
     fi
 
     show_help
@@ -62,16 +65,15 @@ do
 
     if [ "$cmd" = "a" ] || [ "$cmd" = "add" ];
     then
-        git add $FILE
+        git add "$FILE"
         echo "File was added to index"
     elif [ "$cmd" = "i" ] || [ "$cmd" = "skip" ];
     then
         echo "Skiped to the next file"
     elif [ "$cmd" = "checkout" ];
     then
-        git checkout $FILE
+        git checkout "$FILE"
         echo "File was checkouted to original version"
     fi
 
 done
-
