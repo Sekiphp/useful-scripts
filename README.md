@@ -7,7 +7,7 @@ Fix spaces & UTF characters in filename:
 git config core.quotepath off
 ```
 
-Create alias (command):
+For creating alias (command) append this line to .bashrc file:
 ```
-git config core.quotepath off
+alias gch=/c/path/to_file/commit_helper.sh
 ```
