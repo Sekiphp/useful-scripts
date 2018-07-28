@@ -7,10 +7,11 @@ This repository is available under postcardware license. If you using my scripts
 Script for faster commiting and checking changes.
 
 ##### Settings:
+Fix spaces & UTF characters in filename:
 ```
 git config core.quotepath off
 ```
-##### Create alias:
+##### Create command:
 
 Add line below to file: `~/.bashrc`
 ```
@@ -20,7 +21,7 @@ alias gch=path/to/commit_helper.sh
 ## git/branch_update.sh
 Script for updating current branch from master branch.
 
-##### Create alias:
+##### Create command:
 
 Add line below to file: `~/.bashrc`
 ```
