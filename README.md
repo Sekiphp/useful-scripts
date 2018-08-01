@@ -25,5 +25,15 @@ Script for updating current branch from master branch.
 
 Add line below to file: `~/.bashrc`
 ```
-alias gch=path/to/branch_update.sh
+alias gbu=path/to/branch_update.sh
+```
+
+## git/branch_create.sh
+Create new branch based on current version of master branch. First argument is used as name of new branch.
+
+##### Create command:
+
+Add line below to file: `~/.bashrc`
+```
+alias gbc=path/to/branch_create.sh
 ```
