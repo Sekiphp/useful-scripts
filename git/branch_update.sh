@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 
 CURRENT=$(git name-rev --name-only HEAD)
 

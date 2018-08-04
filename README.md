@@ -1,12 +1,12 @@
 # Useful scripts
 
 ## Postcardware download
-This repository is available under postcardware license. If you using my scripts, please send me a postcard from your hometown. My address is no longer available at this public site - I give you my address if you write me to: seki.php@gmail.com Thank you!
+This repository is available under postcardware license. If you using mine scripts, please send me a postcard from your hometown. My address is no longer available at this public site - I give you my address if you write me to: seki.php@gmail.com Thank you!
 
 ## git/commit_helper.sh
 Script for faster commiting and checking changes.
 
-##### Settings:
+##### Recommended settings:
 Fix spaces & UTF characters in filename:
 ```
 git config core.quotepath off
