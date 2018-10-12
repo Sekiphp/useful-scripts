@@ -11,12 +11,15 @@ show_syntax() {
 if [[ "$1" ]];
 then
     BRANCH="master"
-    if [ "$2" = "-b" ] && [ -n "$3" ];
+    if [[ "$2" = "-b" ]];
     then
-        BRANCH="$3"
-    else
-        echo "Missing third parameter!"
-        show_syntax
+		if [[ "$#" -ne 4 ]];
+		then
+			echo -e "$COLOR_RED"Missing third parameter, I use master branch!"$COLOR_WHITE"
+			show_syntax		
+		else
+			BRANCH="$3"
+		fi;
     fi;
 
 	git checkout "$BRANCH"
