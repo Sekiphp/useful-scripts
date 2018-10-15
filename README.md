@@ -38,6 +38,7 @@ Add line below to file: `~/.bashrc` or `~/.bash_profile`
 alias gch=path/to/commit_helper.sh
 alias gbu=path/to/branch_update.sh
 alias gbc=path/to/branch_create.sh
+alias gsu=path/to/set_upstream_to.sh
 ```
 
 _You can do something like that: `echo "alias ..." >> ~/.bashrc`_
