@@ -42,3 +42,7 @@ alias gsu=path/to/set_upstream_to.sh
 ```
 
 _You can do something like that: `echo "alias ..." >> ~/.bashrc`_
+
+
+## Special thanks to:
+[Milan Davídek](https://github.com/midlan)
