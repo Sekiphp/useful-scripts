@@ -2,10 +2,10 @@
 clear
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-changed=0
+REMOTE_HASH="$( curl -s https://api.github.com/repos/Sekiphp/useful-scripts/commits/master | grep -m1 -o -P '(?<="sha": ")[^"]+' )"
+LOCAL_HASH="$( git rev-parse HEAD)"
 
-git -C "$DIR" remote update && git -C "$DIR" status -uno | grep -q 'Your branch is behind' && changed=1
-if [ $changed = 0 ];
+if [ "$REMOTE_HASH" == "$LOCAL_HASH" ];
 then
     echo "Useful-scripts is up to date!"
 else
@@ -21,7 +21,7 @@ else
 
     if [[ "$cmd" = "Y" ]];
     then
-        git -C "$DIR" pull
+        git -C "$DIR" fetch
         echo "Updated successfully";
     fi
 fi
