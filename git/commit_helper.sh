@@ -43,7 +43,7 @@ do
     echo "Checking file: $FILE (status $STATUS)"
     tput rmso
 
-    if [ "$STATUS" = "M" ] || [ "$STATUS" = "AM" ];
+    if [ "$STATUS" = "M" ] || [ "$STATUS" = "AM" ] || [ "$STATUS" = "MM" ];
     then
         gdiff=$(git diff --color "$FILE")
 
