@@ -36,6 +36,7 @@ git status -su | tr \\r \\n | while read -r line ;
 do
     FILE=$(echo "$line" | awk '{$1 = ""; print substr($0,2)}')
     STATUS=$(echo "$line" | awk '{print substr($1,0,2)}')
+    FILE_MIME=$(file --mime-type "$FILE" | grep -c text)
 
     show_hr
 
@@ -43,7 +44,10 @@ do
     echo "Checking file: $FILE (status $STATUS)"
     tput rmso
 
-    if [ "$STATUS" = "M" ] || [ "$STATUS" = "AM" ] || [ "$STATUS" = "MM" ];
+    if [[ "$FILE_MIME" = 0 ]];
+    then
+        echo "I'm not able to show content of binary file!"
+    elif [ "$STATUS" = "M" ] || [ "$STATUS" = "AM" ] || [ "$STATUS" = "MM" ];
     then
         gdiff=$(git diff --color "$FILE")
 
@@ -90,6 +94,9 @@ do
     then
         git reset "$FILE"
         echo "File was unstaged"
+    elif [[ "$cmd" = "rm" ]];
+    then
+        rm "$FILE"
     fi
 
 done
