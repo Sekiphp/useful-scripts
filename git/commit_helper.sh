@@ -7,6 +7,7 @@ COLOR_BLUE="\e[36m"
 COLOR_WHITE="\033[0;37m"
 #COLOR_YELLOW="\033[0;33m"
 #COLOR_OCHRE="\033[38;5;95m"
+CHANGED_FILES_WARN=25
 
 show_help() {
     #echo -e '\n'
@@ -15,6 +16,7 @@ show_help() {
     echo -e '\t' "| (i)gnore - skip file                               |"
     echo -e '\t' "| (r)eset - unstage file                             |"
     echo -e '\t' "| checkout - checkout file (discard changes)         |"
+    echo -e '\t' "| rm - remove file                                   |"
     echo -e '\t' "+----------------------------------------------------+"
 }
 
@@ -31,6 +33,27 @@ read_command() {
         fi
     done
 }
+
+CHANGED_FILES=$(git status -su | wc -l)
+if [[ "$CHANGED_FILES" -ge "$CHANGED_FILES_WARN" ]];
+then
+    echo "Too many changed files ($CHANGED_FILES). Are you sure to continue? [y/n]";
+
+    while : ; do
+        read_command
+
+        if [ "$cmd" == "y" ];
+        then
+            break
+        fi
+
+        if [ "$cmd" == "n" ];
+        then
+            exit 100
+        fi
+    done
+fi
+
 
 git status -su | tr \\r \\n | while read -r line ;
 do
