@@ -15,23 +15,24 @@ then
     then
         if [[ "$#" -ne 4 ]];
         then
-            echo -e "$COLOR_RED"Missing third parameter, I use master branch!"$COLOR_WHITE"
+            echo -e "${COLOR_RED}Missing third parameter, I use master branch!${COLOR_WHITE}"
             show_syntax
         else
             BRANCH="$3"
         fi
     fi
 
-    if [[ $(git branch | grep "$1" | wc -l) = "0" ]];
+    if [[ $(git branch --list "$1" | wc -l) = "0" ]];
     then
+        echo -e "${COLOR_RED}Cerating a new git branch.${COLOR_WHITE}"
         git checkout "$BRANCH"
         git pull
         git checkout -b "$1"
     else
-        echo -e "$COLOR_RED"Moving to existing git branch."$COLOR_WHITE"
+        echo -e "${COLOR_RED}Moving to existing git branch.${COLOR_WHITE}"
         git checkout "$1"
     fi
 else
-    echo -e "$COLOR_RED"Please, specify name of new branch."$COLOR_WHITE"
+    echo -e "${COLOR_RED}Please, specify name of new branch.${COLOR_WHITE}"
     show_syntax
 fi
