@@ -7,7 +7,7 @@ BRANCH="master"
 if [ "$1" = "-b" ] && [ -n "$2" ];
 then
     BRANCH="$2"
-fi;
+fi
 
 git stash
 git checkout "$BRANCH"

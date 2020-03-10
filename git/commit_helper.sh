@@ -29,7 +29,7 @@ read_command() {
     do
         if [ "$cmd" != "q" ] && [ "$cmd" != "" ];
         then
-            break;
+            break
         fi
     done
 }
@@ -37,9 +37,9 @@ read_command() {
 CHANGED_FILES=$(git status -su | wc -l)
 if [[ "$CHANGED_FILES" -ge "$CHANGED_FILES_WARN" ]];
 then
-    echo "Too many changed files ($CHANGED_FILES). Are you sure to continue? [y/n]";
+    echo "Too many changed files ($CHANGED_FILES). Are you sure to continue? [y/n]"
 
-    while : ; do
+    while :; do
         read_command
 
         if [ "$cmd" == "y" ];
@@ -55,13 +55,13 @@ then
 fi
 
 declare -i PROCESSED_FILES=0
-git status -su | tr \\r \\n | while read -r line ;
+git status -su | tr \\r \\n | while read -r line;
 do
     FILE=$(echo "$line" | awk '{$1 = ""; print substr($0,2)}')
     STATUS=$(echo "$line" | awk '{print substr($1,0,2)}')
     FILE_MIME=$(file --mime-type "$FILE" | grep -c text)
 
-	PROCESSED_FILES+=1
+    PROCESSED_FILES+=1
 
     show_hr
 
