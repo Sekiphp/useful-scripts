@@ -59,7 +59,7 @@ git status -su | tr \\r \\n | while read -r line;
 do
     FILE=$(echo "$line" | awk '{$1 = ""; print substr($0,2)}')
     STATUS=$(echo "$line" | awk '{print substr($1,0,2)}')
-    FILE_MIME=$(file --mime-type "$FILE" | grep -E "text|json" -c)
+    FILE_MIME=$(file --mime-type "$FILE" | grep -E "text|json|csv" -c)
 
     PROCESSED_FILES+=1
 
