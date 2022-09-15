@@ -1,7 +1,7 @@
 # Useful scripts
 This repository contains scripts for easier work with miscellaneous tools.
 
-_All scripts were tested in `Git Bash` on Windows 10._
+_All scripts were tested in `Git Bash` on Windows 10 and in terminal of Ubuntu._
 
 ## Postcardware download
 This repository is available under postcardware license. If you using mine scripts, please send me a postcard from your hometown. My address is no longer available at this public site - I give you my address if you write me to: seki.php@gmail.com Thank you!
@@ -39,6 +39,7 @@ alias gch=path/to/commit_helper.sh
 alias gbu=path/to/branch_update.sh
 alias gbc=path/to/branch_create.sh
 alias gsu=path/to/set_upstream_to.sh
+alias gaf=path/to/analyze_changes_in_folders.sh
 ```
 
 _You can do something like that: `echo "alias ..." >> ~/.bashrc`_

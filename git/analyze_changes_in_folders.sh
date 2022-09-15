@@ -43,7 +43,7 @@ do
     exec 3>&1
     exec 1> >(paste /dev/null -)
 
-    git -C $line status
+    git -C $line status -su
 
     exec 1>&3 3>&-
 done;
