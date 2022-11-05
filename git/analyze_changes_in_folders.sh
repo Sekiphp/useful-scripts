@@ -7,43 +7,37 @@ COLOR_WHITE="\033[0;37m"
 
 clear
 
-read_command() {
-    while read -p "$: " cmd </dev/tty
-    do
-        if [ "$cmd" != "q" ] && [ "$cmd" != "" ];
-        then
-            break
-        fi
-    done
-}
+# show mode
+if [[ "$1" = "--empty" ]];
+then
+    echo "Show all directories..."
+else
+    echo "Show only repositories with uncommitted changes..."
+    echo "You can use --empty flag to show all folder"
+fi
 
-echo 'This script loops all folders in current directory "'$(pwd)'" and show git changes.'
-echo 'Do you want to continue?'
-while :; do
-    read_command
+# iterate folders
+ls -d * | while read -r folder;
+do
+    GIT_STATUS=$(git -C $folder status -su)
 
-    if [ "$cmd" == "y" ];
+    if [[ "$1" = "--empty" ]] && [[ -z "$GIT_STATUS" ]];
     then
-        break
+        echo -e "$COLOR_BLUE"
+        echo 'Showing git status of folder:' $folder
     fi
 
-    if [ "$cmd" == "n" ];
+    if [[ ! -z "$GIT_STATUS" ]];
     then
-         exit 100
-     fi
-done
+        if [[ ! "$1" = "--empty" ]];
+        then
+            echo -e "$COLOR_BLUE"
+            echo 'Showing git status of folder:' $folder
+        fi
 
+        echo -e "$COLOR_WHITE"
+        echo "$GIT_STATUS"
+    fi
 
-ls -d */ | while read -r line;
-do
-    echo -e "$COLOR_BLUE"
-    echo 'Showing git status of folder:' $line
-    echo -e "$COLOR_WHITE"
-
-    exec 3>&1
-    exec 1> >(paste /dev/null -)
-
-    git -C $line status -su
-
-    exec 1>&3 3>&-
 done;
+
