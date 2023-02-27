@@ -57,7 +57,7 @@ fi
 declare -i PROCESSED_FILES=0
 git status -su | tr \\r \\n | while read -r line;
 do
-    FILE=$(echo "$line" | awk '{$1 = ""; print substr($0,2)}')
+    FILE=$(echo "$line" | awk '{$1 = ""; print substr($0,2)}' | sed 's/^"\|"$//g') # sed removing backslashes
     STATUS=$(echo "$line" | awk '{print substr($1,0,2)}')
     FILE_MIME=$(file --mime-type "$FILE" | grep -E "text|json|csv" -c)
 
