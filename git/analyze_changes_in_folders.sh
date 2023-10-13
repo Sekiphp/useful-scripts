@@ -17,11 +17,22 @@ else
 fi
 
 # iterate folders
-ls -d * | while read -r folder;
+ls -d */ | while read -r folder;
 do
+    GIT_TOPLEVEL_FOLDER=$(git -C $folder rev-parse --show-toplevel)'/'
+    CURRENT_FOLDER=$(pwd)'/'$folder
+
+    if [[ "${GIT_TOPLEVEL_FOLDER}" != "${CURRENT_FOLDER}" ]];
+    then
+        echo -e "$COLOR_RED"
+        echo "Folder ${folder} is not git repository!"
+
+        continue
+    fi
+
     GIT_STATUS=$(git -C $folder status -su)
 
-    if [[ "$1" = "--empty" ]] && [[ -z "$GIT_STATUS" ]];
+    if [[ "$1" = "--empty" ]] || [[ ! -z "$GIT_STATUS" ]];
     then
         echo -e "$COLOR_BLUE"
         echo 'Showing git status of folder:' $folder
@@ -29,15 +40,8 @@ do
 
     if [[ ! -z "$GIT_STATUS" ]];
     then
-        if [[ ! "$1" = "--empty" ]];
-        then
-            echo -e "$COLOR_BLUE"
-            echo 'Showing git status of folder:' $folder
-        fi
-
         echo -e "$COLOR_WHITE"
         echo "$GIT_STATUS"
     fi
 
-done;
-
+done
