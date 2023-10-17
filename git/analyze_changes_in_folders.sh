@@ -17,9 +17,9 @@ else
 fi
 
 # iterate folders
-ls -d */ | while read -r folder;
+ls -d */ | tr -d "/" | while read -r folder;
 do
-    GIT_TOPLEVEL_FOLDER=$(git -C $folder rev-parse --show-toplevel)'/'
+    GIT_TOPLEVEL_FOLDER=$(git -C $folder rev-parse --show-toplevel)
     CURRENT_FOLDER=$(pwd)'/'$folder
 
     if [[ "${GIT_TOPLEVEL_FOLDER}" != "${CURRENT_FOLDER}" ]];
@@ -34,8 +34,7 @@ do
 
     if [[ "$1" = "--empty" ]] || [[ ! -z "$GIT_STATUS" ]];
     then
-        echo -e "$COLOR_BLUE"
-        echo 'Showing git status of folder:' $folder
+        echo -e "$COLOR_BLUE" "Showing git status of folder: ${folder}"
     fi
 
     if [[ ! -z "$GIT_STATUS" ]];
