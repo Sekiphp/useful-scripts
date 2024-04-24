@@ -1,5 +1,9 @@
 #!/bin/bash
 
+show_syntax() {
+    echo -e "Usage: gbd BRANCH_NAME"
+}
+
 if [[ "$1" ]];
 then
     echo "Delete branch"
