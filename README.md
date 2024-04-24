@@ -31,6 +31,11 @@ gbc my_new_branch -b master
 gbc my_new_branch -b develop
 ```
 
+# git/branch_delete.sh
+Delete specified branch (local + remote).
+
+**Command syntax:** `gbd BRANCH_NAME`
+
 ## Create commands:
 
 Add line below to file: `~/.bashrc` or `~/.bash_profile`
@@ -40,6 +45,7 @@ alias gbu=path/to/branch_update.sh
 alias gbc=path/to/branch_create.sh
 alias gsu=path/to/set_upstream_to.sh
 alias gaf=path/to/analyze_changes_in_folders.sh
+alias gbd=path/to/branch_delete.sh
 ```
 
 _You can do something like that: `echo "alias ..." >> ~/.bashrc`_
