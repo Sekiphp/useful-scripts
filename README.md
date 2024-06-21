@@ -8,6 +8,8 @@ This repository is available under postcardware license. If you using mine scrip
 
 # git/commit_helper.sh
 Script for faster commiting and checking changes.
+![image](https://github.com/Sekiphp/useful-scripts/assets/9967016/477932db-2cde-465b-a6b4-e67c4dc60ca2)
+
 
 **Command syntax:** `gch`
 
@@ -35,6 +37,11 @@ gbc my_new_branch -b develop
 Delete specified branch (local + remote).
 
 **Command syntax:** `gbd BRANCH_NAME`
+
+# git/analyze_changes_in_folders.sh
+If you are working with a large number of repositories (vendor), it is good to know where the changed files are.
+![image](https://github.com/Sekiphp/useful-scripts/assets/9967016/bc6e39e3-5480-4f59-8ad3-704062ca7c0a)
+
 
 ## Create commands:
 
