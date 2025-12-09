@@ -47,12 +47,13 @@ If you are working with a large number of repositories (vendor), it is good to k
 
 Add line below to file: `~/.bashrc` or `~/.bash_profile`
 ```console
-alias gch=path/to/commit_helper.sh
-alias gbu=path/to/branch_update.sh
-alias gbc=path/to/branch_create.sh
-alias gsu=path/to/set_upstream_to.sh
-alias gaf=path/to/analyze_changes_in_folders.sh
-alias gbd=path/to/branch_delete.sh
+alias gch=path/to/git/commit_helper.sh
+alias gbu=path/to/git/branch_update.sh
+alias gbc=path/to/git/branch_create.sh
+alias gsu=path/to/git/set_upstream_to.sh
+alias gaf=path/to/git/analyze_changes_in_folders.sh
+alias gbd=path/to/git/branch_delete.sh
+alias tag=path/to/git/create_tag.sh
 ```
 
 _You can do something like that: `echo "alias ..." >> ~/.bashrc`_
